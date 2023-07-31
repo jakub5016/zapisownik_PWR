@@ -1,0 +1,39 @@
+#:kivy 2.2.1
+
+<welcomePage>:
+    canvas:
+        Color:
+            rgba: 133/255, 138/255, 227/255, 1
+
+        Rectangle:
+            size: self.width, self.height
+
+        Color:
+            rgba: 78/255, 20/255, 140/255, 1
+        RoundedRectangle:
+            pos: self.center_x/2, self.center_y/2
+            size: self.width/2, self.height/2
+            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+
+    Label:
+        font_size: self.width/3
+        center_x: root.width / 2
+        center_y: (root.height / 2) + (0.1 * root.height)
+        text: "Witaj w zapisowniku!"
+    RoundedButton:
+        text_included:"Zaloguj sie"
+
+<RoundedButton>
+
+    canvas:
+        Color:
+            rgba: 78/255, 20/255, 140/255, 1
+        RoundedRectangle:
+            pos: self.center_x/2, self.center_y/2
+            size: self.width/2, self.height/2
+            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+    Label:
+        font_size: 70
+        center_x: self.width / 2
+        center_y: (self.height / 2) + (0.1 * self.height)
+        text: root.text_included
