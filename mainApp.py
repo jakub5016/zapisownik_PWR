@@ -8,11 +8,11 @@ class background(Widget):
     pass
 
 class welcomePage(Widget):
+    background_color = (253/255, 240/255, 213/255, 1)
+    text_color = (240/255, 240/255, 240/255, 1)
+    button_color = (0, 48/255, 73/255, 1)
+    warning_color = (193/255, 18/255, 31/255, 1)
     background = background()
-    pass
-
-class RoundedButton(Widget):
-    text_included = ""
     pass
 
 class mainWindow(App):

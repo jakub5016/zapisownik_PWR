@@ -3,13 +3,13 @@
 <welcomePage>:
     canvas:
         Color:
-            rgba: 133/255, 138/255, 227/255, 1
+            rgba: root.background_color
 
         Rectangle:
             size: self.width, self.height
 
         Color:
-            rgba: 78/255, 20/255, 140/255, 1
+            rgba: root.button_color
         RoundedRectangle:
             pos: self.center_x/2, self.center_y/2
             size: self.width/2, self.height/2
@@ -20,20 +20,29 @@
         center_x: root.width / 2
         center_y: (root.height / 2) + (0.1 * root.height)
         text: "Witaj w zapisowniku!"
+        font_name: "Roboto-Black.ttf"
+        color: root.text_color
     RoundedButton:
-        text_included:"Zaloguj sie"
+        text:"Zaloguj sie"
+        background_color: root.button_color
+        background_normal: ""
+        background_down: ""
+        center_x: root.width / 2
+        center_y: (root.height / 2) - (0.1 * root.height)
 
-<RoundedButton>
+<RoundedButton@Button>
 
     canvas:
         Color:
-            rgba: 78/255, 20/255, 140/255, 1
+            rgba : 102/255, 155/255, 188/255, 1
+
         RoundedRectangle:
-            pos: self.center_x/2, self.center_y/2
-            size: self.width/2, self.height/2
             radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+            size: self.width, self.height
+            pos: self.pos
     Label:
-        font_size: 70
-        center_x: self.width / 2
-        center_y: (self.height / 2) + (0.1 * self.height)
-        text: root.text_included
+        text: root.text
+        center_x: root.center_x
+        center_y: root.center_y
+        font_name: "Roboto-Black.ttf"
+        color: 240/255, 240/255, 240/255, 1
