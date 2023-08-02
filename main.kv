@@ -1,49 +1,9 @@
 #:kivy 2.2.1
 
-<welcomePage>:
+
+<rootClass>:
     canvas:
         Color:
             rgba: root.background_color
-
         Rectangle:
             size: self.width, self.height
-
-        Color:
-            rgba: root.button_color
-        RoundedRectangle:
-            pos: self.center_x/2, self.center_y/2
-            size: self.width/2, self.height/2
-            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
-
-    Label:
-        font_size: self.width/3
-        center_x: root.width / 2
-        center_y: (root.height / 2) + (0.1 * root.height)
-        text: "Witaj w zapisowniku!"
-        font_name: "Roboto-Black.ttf"
-        color: root.text_color
-    RoundedButton:
-        text:"Zaloguj sie"
-        on_press: root.login_press(self)
-        background_color: root.button_color
-        background_normal: ""
-        background_down: ""
-        center_x: root.width / 2
-        center_y: (root.height / 2) - (0.1 * root.height)
-
-<RoundedButton@Button>
-
-    canvas:
-        Color:
-            rgba : 102/255, 155/255, 188/255, 1
-
-        RoundedRectangle:
-            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
-            size: self.width, self.height
-            pos: self.pos
-    Label:
-        text: root.text
-        center_x: root.center_x
-        center_y: root.center_y
-        font_name: "Roboto-Black.ttf"
-        color: 240/255, 240/255, 240/255, 1
