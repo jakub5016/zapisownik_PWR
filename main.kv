@@ -3,17 +3,17 @@
 <WelcomePage>:
     canvas:
         Color:
-            rgba: self.parent.main_color_1
+            rgba: self.page_color
 
         RoundedRectangle:
             pos: self.center_x/2, self.center_y/2
             size: self.parent.width/2, self.parent.height/2
             radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
 
+    LoginButton:
+        center: self.parent.center
+
 <RootClass>:
-    background_color: (253/255, 240/255, 213/255, 1)
-    text_color: (240/255, 240/255, 240/255, 1)
-    main_color_1: (0, 18.8/255, 28.6/255, 1 )
     canvas:
         Color:
             rgba: self.background_color
@@ -30,10 +30,6 @@
         text: "Witaj w zapisowniku!"
         font_name: "Roboto-Black.ttf"
         color: self.parent.text_color
-
-    LoginButton:
-        background_color: self.parent.main_color_1
-        center: self.parent.center
 
 
 <LoginButton>:
