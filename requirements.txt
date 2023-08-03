@@ -1,2 +1,2 @@
 selenium==4.10.0
-kivy=2.2.1
+kivy==2.2.1

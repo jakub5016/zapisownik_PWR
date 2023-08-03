@@ -1,21 +1,23 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.animation import Animation
 from kivy.lang.builder import Builder
-
+from kivy.uix.button import Button
 Builder.load_file('./main.kv')
 
-class rootClass(Widget):
-    background_color = (253/255, 240/255, 213/255, 1)
+class WelcomePage(Widget):
     pass
 
-class welcomePage(Widget):
+class RootClass(Widget):
     pass
 
-class mainWindow(App):
+class LoginButton(Button):
+    is_presed = False
+    pass
+
+class MainWindow(App):
     def build(self):
-        return rootClass()
+        return RootClass()
 
 
 if __name__ == '__main__':
-    mainWindow().run()
+    MainWindow().run()

@@ -1,9 +1,57 @@
-#:kivy 2.2.1
+# #:kivy 2.2.1
 
-
-<rootClass>:
+<WelcomePage>:
     canvas:
         Color:
-            rgba: root.background_color
+            rgba: self.parent.main_color_1
+
+        RoundedRectangle:
+            pos: self.center_x/2, self.center_y/2
+            size: self.parent.width/2, self.parent.height/2
+            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+
+<RootClass>:
+    background_color: (253/255, 240/255, 213/255, 1)
+    text_color: (240/255, 240/255, 240/255, 1)
+    main_color_1: (0, 18.8/255, 28.6/255, 1 )
+    canvas:
+        Color:
+            rgba: self.background_color
         Rectangle:
             size: self.width, self.height
+
+    WelcomePage:
+        center: self.parent.center
+
+    Label:
+        font_size: self.width/3
+        center_x: self.parent.width / 2
+        center_y: (self.parent.height / 2) + (0.1 * self.parent.height)
+        text: "Witaj w zapisowniku!"
+        font_name: "Roboto-Black.ttf"
+        color: self.parent.text_color
+
+    LoginButton:
+        background_color: self.parent.main_color_1
+        center: self.parent.center
+
+
+<LoginButton>:
+    canvas:
+        Color:
+            rgba : 102/255, 155/255, 188/255, 1
+
+        RoundedRectangle:
+            radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+            size: self.width, self.height
+            pos: self.pos
+    Label:
+        text:"Zaloguj sie"
+        background_color: self.background_color
+        background_normal: ""
+        background_down: ""
+        center_x: self.parent.width / 2
+        center_y: (self.parent.height / 2) - (0.1 * self.parent.height)
+        font_name: "Roboto-Black.ttf"
+        color: 240/255, 240/255, 240/255, 1
+
