@@ -11,7 +11,8 @@
             radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
 
     LoginButton:
-        center: self.parent.center
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y - (0.5 * self.parent.height)
 
 <RootClass>:
     canvas:
@@ -46,8 +47,8 @@
         background_color: self.background_color
         background_normal: ""
         background_down: ""
-        center_x: self.parent.width / 2
-        center_y: (self.parent.height / 2) - (0.1 * self.parent.height)
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
         font_name: "Roboto-Black.ttf"
         color: 240/255, 240/255, 240/255, 1
 
