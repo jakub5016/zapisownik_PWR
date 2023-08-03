@@ -34,12 +34,12 @@
 
 
 <LoginButton>:
-    background_normal: ""
-    background_down: ""
+    background_normal: "./transparent_background.png"
+    background_down: "./transparent_background.png"
     on_press: self.press(self, self.parent)
     canvas:
         Color:
-            rgba : 102/255, 155/255, 188/255, 1
+            rgba : self.button_color
 
         RoundedRectangle:
             radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
@@ -51,5 +51,5 @@
         center_x: self.parent.center_x
         center_y: self.parent.center_y
         font_name: "Roboto-Black.ttf"
-        color: 240/255, 240/255, 240/255, 1
+        color: self.parent.text_color
 
