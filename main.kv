@@ -34,6 +34,9 @@
 
 
 <LoginButton>:
+    background_normal: ""
+    background_down: ""
+    on_press: self.press(self, self.parent)
     canvas:
         Color:
             rgba : 102/255, 155/255, 188/255, 1
@@ -45,8 +48,6 @@
     Label:
         text:"Zaloguj sie"
         background_color: self.background_color
-        background_normal: ""
-        background_down: ""
         center_x: self.parent.center_x
         center_y: self.parent.center_y
         font_name: "Roboto-Black.ttf"
