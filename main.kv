@@ -100,8 +100,8 @@
         center_y: (self.parent.height / 2) + (0.068 * self.parent.height)
         height: self.width/8
         width: 300
-        on_text_validate:
-            self.parent.on_text_validate(self.text)
+        on_text:
+            self.parent.username_got = self.text
 
     Label:
         font_size: self.width/4
@@ -119,5 +119,11 @@
         height: self.width/8
         width: 300
         password: True
-        on_text_validate:
-            self.parent.on_text_validate(self.text)
+        on_text:
+            self.parent.password_got = self.text
+
+    Button:
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y - (0.2 * self.parent.height)
+        on_press:
+            self.parent.on_press()
