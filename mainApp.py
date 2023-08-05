@@ -28,6 +28,7 @@ class LoginButton(Button):
         animate =Animation(size=(200,200), duration=0.7)
         animate.start(self)
         animate.start(self.parent)
+
     pass
 
 class ScreenTwo(Screen):

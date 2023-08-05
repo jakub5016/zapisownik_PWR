@@ -73,15 +73,23 @@
             rgba: self.page_color
 
         RoundedRectangle:
-            pos: self.center_x/2, self.center_y/2 - (0.15 * self.center_y/2)
-            size: self.parent.width/2, self.parent.height/1.7
+            pos: self.center_x/2, self.center_y/2 - (0.25 * self.center_y/2)
+            size: self.parent.width/2, self.parent.height/1.5
             radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
 
     Label:
         font_size: self.width/3
         center_x: self.parent.width / 2
-        center_y: (self.parent.height / 2) + (0.2 * self.parent.height)
+        center_y: (self.parent.height / 2) + (0.25 * self.parent.height)
         text: "Zaloguj się!"
+        font_name: "Roboto-Black.ttf"
+        color: self.parent.text_color
+
+    Label:
+        font_size: self.width/4
+        center_x: self.parent.width / 2
+        center_y: (self.parent.height / 2) + (0.13 * self.parent.height)
+        text: "Nazwa użytkownika"
         font_name: "Roboto-Black.ttf"
         color: self.parent.text_color
 
@@ -89,14 +97,27 @@
         multiline:False
         font_size: self.width/14
         center_x: self.parent.width / 2
-        center_y: (self.parent.height / 2) + (0.08 * self.parent.height)
+        center_y: (self.parent.height / 2) + (0.068 * self.parent.height)
         height: self.width/8
         width: 300
+        on_text_validate:
+            self.parent.on_text_validate(self.text)
+
+    Label:
+        font_size: self.width/4
+        center_x: self.parent.width / 2
+        center_y: (self.parent.height / 2) - (0.02 * self.parent.height)
+        text: "Hasło"
+        font_name: "Roboto-Black.ttf"
+        color: self.parent.text_color
 
     TextInput:
         multiline:False
         font_size: self.width/14
         center_x: self.parent.width / 2
-        center_y: (self.parent.height / 2) - (0.06 * self.parent.height)
+        center_y: (self.parent.height / 2) - (0.082 * self.parent.height)
         height: self.width/8
         width: 300
+        password: True
+        on_text_validate:
+            self.parent.on_text_validate(self.text)
