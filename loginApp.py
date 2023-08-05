@@ -1,7 +1,8 @@
 from kivy.uix.widget import Widget
-
-main_color_1 =  (0, 18.8/255, 28.6/255, 1 )
+from colors import *
 
 class LoginPage(Widget):
+    background_color = background_color
     page_color = main_color_1
+    text_color = text_color
     pass

@@ -7,14 +7,16 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.screenmanager import FadeTransition
 from loginApp import LoginPage
 from colors import *
+from kivy.core.window import Window
 
+Window.minimum_width, Window.minimum_height = (700, 500)
 Builder.load_file('./main.kv')
 
 
 class WelcomePage(Widget):
-    background_color = (253/255, 240/255, 213/255, 1)
-    text_color = (240/255, 240/255, 240/255, 1)
-    main_color_1 =  (0, 18.8/255, 28.6/255, 1 )
+    background_color = background_color
+    text_color = text_color
+    main_color_1 =  main_color_1
     pass
 
 class LoginButton(Button):
@@ -22,8 +24,8 @@ class LoginButton(Button):
     background_color = main_color_1
     button_color = main_color_2
 
-    def press(self, widget, *args):
-        animate =Animation(width=200, duration=0.7)
+    def press(self):
+        animate =Animation(size=(200,200), duration=0.7)
         animate.start(self)
         animate.start(self.parent)
     pass
