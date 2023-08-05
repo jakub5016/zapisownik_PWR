@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.animation import Animation
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.screenmanager import FallOutTransition
+from loginApp import LoginPage
 
 Builder.load_file('./main.kv')
 
