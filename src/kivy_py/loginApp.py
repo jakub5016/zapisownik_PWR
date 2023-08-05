@@ -1,6 +1,7 @@
 from kivy.uix.widget import Widget
 from .colors import *
 from selenium_code.login import login_edukacja_cl
+import threading
 
 class LoginPage(Widget):
     background_color = background_color
@@ -10,5 +11,6 @@ class LoginPage(Widget):
     password_got = ""
     def on_press(self):
         print(self.username_got, self.password_got)
-        login_edukacja_cl(username=self.username_got, password=self.password_got)
+        thread_to_login = threading.Thread(target=login_edukacja_cl, args=(self.username_got, self.password_got))
+        thread_to_login.start()
     pass

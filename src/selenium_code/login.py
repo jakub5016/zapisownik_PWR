@@ -25,15 +25,15 @@ def login_edukacja_cl(username, password):
         driver.implicitly_wait(10)
         print("LOGIN COMPLETE")
         # Go to zapisy
-        print("GOING TO \"ZAPISY\"")
-        driver.find_element(By.XPATH, "//*[contains(text(), 'Zapisy')]").click()
+        # print("GOING TO \"ZAPISY\"")
+        # driver.find_element(By.XPATH, "//*[contains(text(), 'Zapisy')]").click()
 
-        driver.implicitly_wait(10)
+        # driver.implicitly_wait(10)
 
         with open("output.html", "w", encoding="utf-8") as file:
             file.write(driver.page_source)
 
-        print("Zawartość strony została zapisana do pliku 'output.html'.")
+        # print("Zawartość strony została zapisana do pliku 'output.html'.")
 
     finally:
         driver.quit()
