@@ -15,12 +15,6 @@
         center_y: self.parent.center_y - (0.5 * self.parent.height)
 
 <RootClass>:
-    canvas:
-        Color:
-            rgba: self.background_color
-        Rectangle:
-            size: self.width, self.height
-
     WelcomePage:
         center: self.parent.center
 
@@ -38,7 +32,6 @@
     background_down: "./transparent_background.png"
     on_press:
         self.press(self, self.parent)
-        self.parent.parent.parent.manager.transition.direction = "left"
         self.parent.parent.parent.manager.transition.duration = 1
         self.parent.parent.parent.manager.current = "screen_two"
 
@@ -60,14 +53,20 @@
         color: self.parent.text_color
 
 <ScreenTwo>:
-    # canvas:
-    #     Color:
-    #         rgba: self.page_color
+    canvas:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.width, self.height
 
-    #     RoundedRectangle:
-    #         radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
 
 
 <ScreenOne>:
+    canvas:
+        Color:
+            rgba: self.background_color
+        Rectangle:
+            size: self.width, self.height
+
     RootClass:
 

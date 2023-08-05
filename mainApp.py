@@ -4,6 +4,7 @@ from kivy.lang.builder import Builder
 from kivy.uix.button import Button
 from kivy.animation import Animation
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import FallOutTransition
 
 Builder.load_file('./main.kv')
 
@@ -35,12 +36,14 @@ class LoginButton(Button):
     pass
 
 class ScreenTwo(Screen):
+    background_color = background_color
     pass
 
 class ScreenOne(Screen):
+    background_color = background_color
     pass
 
-screen_manager = ScreenManager()
+screen_manager = ScreenManager(transition=FallOutTransition())
 screen_manager.add_widget(ScreenOne())
 screen_manager.add_widget(ScreenTwo(name="screen_two"))
 
