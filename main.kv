@@ -3,20 +3,12 @@
 <WelcomePage>:
     canvas:
         Color:
-            rgba: self.page_color
+            rgba: self.main_color_1
 
         RoundedRectangle:
             pos: self.center_x/2, self.center_y/2
             size: self.parent.width/2, self.parent.height/2
             radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
-
-    LoginButton:
-        center_x: self.parent.center_x
-        center_y: self.parent.center_y - (0.5 * self.parent.height)
-
-<RootClass>:
-    WelcomePage:
-        center: self.parent.center
 
     Label:
         font_size: self.width/3
@@ -26,14 +18,18 @@
         font_name: "Roboto-Black.ttf"
         color: self.parent.text_color
 
+    LoginButton:
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y - (0.1 * self.parent.height)
+
 
 <LoginButton>:
     background_normal: "./transparent_background.png"
     background_down: "./transparent_background.png"
     on_press:
         self.press(self, self.parent)
-        self.parent.parent.parent.manager.transition.duration = 2.5
-        self.parent.parent.parent.manager.current = "screen_two"
+        # self.parent.parent.parent.manager.transition.duration = 0.7
+        # self.parent.parent.parent.manager.current = "screen_two"
 
 
     canvas:
@@ -69,7 +65,7 @@
         Rectangle:
             size: self.width, self.height
 
-    RootClass:
+    WelcomePage:
 
 <LoginPage>:
     canvas:

@@ -4,22 +4,14 @@ from kivy.lang.builder import Builder
 from kivy.uix.button import Button
 from kivy.animation import Animation
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.screenmanager import FallOutTransition
+from kivy.uix.screenmanager import FadeTransition
 from loginApp import LoginPage
+from colors import *
 
 Builder.load_file('./main.kv')
 
-background_color = (253/255, 240/255, 213/255, 1)
-text_color = (240/255, 240/255, 240/255, 1)
-main_color_1 =  (0, 18.8/255, 28.6/255, 1 )
-main_color_2 = (193/255, 18/255, 31/255, 1)
-
 
 class WelcomePage(Widget):
-    page_color = main_color_1
-    pass
-
-class RootClass(Widget):
     background_color = (253/255, 240/255, 213/255, 1)
     text_color = (240/255, 240/255, 240/255, 1)
     main_color_1 =  (0, 18.8/255, 28.6/255, 1 )
@@ -31,9 +23,9 @@ class LoginButton(Button):
     button_color = main_color_2
 
     def press(self, widget, *args):
-        animate = Animation(opacity=0, duration=0.7)
-        animate.start(widget)
-        animate.start(args[0])
+        animate =Animation(width=200, duration=0.7)
+        animate.start(self)
+        animate.start(self.parent)
     pass
 
 class ScreenTwo(Screen):
@@ -44,7 +36,7 @@ class ScreenOne(Screen):
     background_color = background_color
     pass
 
-screen_manager = ScreenManager(transition=FallOutTransition())
+screen_manager = ScreenManager(transition=FadeTransition())
 screen_manager.add_widget(ScreenOne())
 screen_manager.add_widget(ScreenTwo(name="screen_two"))
 
