@@ -3,6 +3,7 @@ from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
 from kivy.uix.button import Button
 from kivy.animation import Animation
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 Builder.load_file('./main.kv')
 
@@ -33,10 +34,19 @@ class LoginButton(Button):
         animate.start(args[0])
     pass
 
+class ScreenTwo(Screen):
+    pass
+
+class ScreenOne(Screen):
+    pass
+
+screen_manager = ScreenManager()
+screen_manager.add_widget(ScreenOne())
+screen_manager.add_widget(ScreenTwo(name="screen_two"))
+
 class MainWindow(App):
     def build(self):
-        return RootClass()
-
+        return screen_manager
 
 if __name__ == '__main__':
     MainWindow().run()

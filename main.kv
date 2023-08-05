@@ -36,7 +36,13 @@
 <LoginButton>:
     background_normal: "./transparent_background.png"
     background_down: "./transparent_background.png"
-    on_press: self.press(self, self.parent)
+    on_press:
+        self.press(self, self.parent)
+        self.parent.parent.parent.manager.transition.direction = "left"
+        self.parent.parent.parent.manager.transition.duration = 1
+        self.parent.parent.parent.manager.current = "screen_two"
+
+
     canvas:
         Color:
             rgba : self.button_color
@@ -52,4 +58,16 @@
         center_y: self.parent.center_y
         font_name: "Roboto-Black.ttf"
         color: self.parent.text_color
+
+<ScreenTwo>:
+    # canvas:
+    #     Color:
+    #         rgba: self.page_color
+
+    #     RoundedRectangle:
+    #         radius: [(60, 60), (60, 60), (60, 60), (60, 60)]
+
+
+<ScreenOne>:
+    RootClass:
 
