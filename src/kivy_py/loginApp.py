@@ -101,6 +101,11 @@ class LoginPage(Widget):
             driver.quit()
 
         Clock.schedule_once(lambda dt: self.animation.stop(self), 0)
+        Clock.schedule_once(self.change_to_screen_one, 0)
+
+    def change_to_screen_one(self, dt):
+        self.parent.parent.current = 'screen_one'  # Zmiana ekranu na "screen_one"
+
 
     def on_press_animation(self):
         self.animation.start(self)
