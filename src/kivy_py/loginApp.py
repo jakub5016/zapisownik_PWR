@@ -6,6 +6,12 @@ from selenium.webdriver.common.by import By
 import os
 from kivy.animation import Animation
 from kivy.clock import Clock
+from kivy.graphics import Color, RoundedRectangle
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
+from kivy.core.window import Window
+
 
 
 class LoginPage(Widget):
@@ -16,6 +22,45 @@ class LoginPage(Widget):
     password_got = ""
     logged = False
     animation = Animation(opacity=1, duration=30)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.orientation = 'vertical'
+        self.pos = (Window.center[0]/2, Window.center[1]/2 - (0.22*Window.center[1]) )
+        self.width = Window.width/2
+        self.height = Window.height/2 + (0.22*Window.height)
+        with self.canvas:
+            Color(*self.page_color)
+            RoundedRectangle(pos=self.pos, size=self.size, radius=[60, 60, 60, 60])
+
+        # Label
+        label1 = Label(font_size=self.width/10, center_x=self.center_x, center_y=self.center_y + (0.5 * self.center_y), text="Zaloguj się!", font_name="../fonts/Roboto-Black.ttf")
+        self.add_widget(label1)
+
+        # Username
+        label2 = Label(font_size=self.width/16, center_x=self.center_x, center_y=self.center_y + (0.3 * self.center_y), text="Nazwa użytkownika", font_name="../fonts/Roboto-Black.ttf")
+        self.add_widget(label2)
+        self.username_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y + (0.2 * self.center_y), height=self.width/8, width=300, on_text=self.on_username_text)
+        self.add_widget(self.username_input)
+
+        # Password
+        label3 = Label(font_size=self.width/16, center_x=self.center_x, center_y=self.center_y - (0.1 * self.center_y), text="Hasło", font_name="../fonts/Roboto-Black.ttf")
+        self.add_widget(label3)
+        self.password_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y - (0.2 * self.center_y), height=self.width/8, width=300, password=True, on_text=self.on_password_text)
+        self.add_widget(self.password_input)
+
+        # Button
+        button = Button(center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), on_press=self.on_button_press)
+        self.add_widget(button)
+
+    def on_username_text(self, instance, value):
+        self.username_got = value
+
+    def on_password_text(self, instance, value):
+        self.password_got = value
+
+    def on_button_press(self, instance):
+        self.on_press()
+
 
     def login_edukacja_cl(self):
         login_url = "https://edukacja.pwr.wroc.pl/EdukacjaWeb/studia.do"
