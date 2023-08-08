@@ -40,7 +40,7 @@ class LoginButton(Button):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         with self.canvas:
-            Color(1, 1, 1, 1)
+            Color(*self.button_color)
             RoundedRectangle(radius=[60, 60, 60, 60], size=self.size, pos=self.pos)
         label = Label(text="Zaloguj się", center_x=self.center_x, center_y=self.center_y, font_name="../fonts/Roboto-Black.ttf")
         self.add_widget(label)
@@ -48,6 +48,7 @@ class LoginButton(Button):
 
     def on_button_press(self, instance):
         self.parent.parent.manager.transition.duration = 0.7
+        self.parent.parent.manager.transition.duration
         self.parent.parent.manager.current = "screen_two"
 
     def press(self):
@@ -62,11 +63,17 @@ class ScreenTwo(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.size = (Window.width, Window.height)
         with self.canvas:
-            Color(1, 1, 1, 1)
-            RoundedRectangle(pos=self.pos, size=self.size)
+            Color(*background_color) # To unpack colors
+            self.rect = RoundedRectangle(pos=self.pos, size=self.size)
+        self.bind(pos=self.update_rect, size=self.update_rect)
         login_page = LoginPage()
         self.add_widget(login_page)
+
+    def update_rect(self, *args):
+        self.rect.pos = self.pos
+        self.rect.size = self.size
 
 
 class ScreenOne(Screen):
@@ -89,7 +96,7 @@ class ScreenOne(Screen):
 
 class MainWindow(App):
     def build(self):
-        sm = ScreenManager()
+        sm = ScreenManager(transition=FadeTransition())
         screen_one = ScreenOne(name='screen_one')
         screen_two = ScreenTwo(name='screen_two')
         sm.add_widget(screen_one)
