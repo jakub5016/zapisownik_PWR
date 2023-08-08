@@ -3,13 +3,11 @@ from .colors import *
 import threading
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import os
 from kivy.animation import Animation
 from kivy.clock import Clock
 from kivy.graphics import Color, RoundedRectangle
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy_py.rounded_widgets import RoundedButton
 
@@ -34,7 +32,7 @@ class LoginPage(Widget):
             RoundedRectangle(pos=self.pos, size=self.size, radius=[60, 60, 60, 60])
 
         # Label
-        label1 = Label(font_size=self.width/10, center_x=self.center_x, center_y=self.center_y + (0.5 * self.center_y), text="Zaloguj się!", font_name="../fonts/Roboto-Black.ttf")
+        label1 = Label(font_size=self.width/10, center_x=self.center_x, center_y=self.center_y + (0.5 * self.center_y), text="Logowanie", font_name="../fonts/Roboto-Black.ttf")
         self.add_widget(label1)
 
         # Username
@@ -50,8 +48,8 @@ class LoginPage(Widget):
         self.add_widget(self.password_input)
 
         # Button
-        button = RoundedButton(center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), on_press=self.on_button_press,button_color=self.button_color, background_color = self.page_color)
-        self.add_widget(button)
+        self.button = RoundedButton(center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), on_press=self.on_button_press,button_color=self.button_color, background_color = self.page_color)
+        self.add_widget(self.button)
 
     def on_username_text(self, instance, value):
         self.username_got = value

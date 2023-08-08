@@ -36,6 +36,8 @@ class LoginButton(Button):
     text_color = text_color
     background_color = main_color_1
     button_color = main_color_2
+    background_normal = './graphics/transparent_background.png'
+    background_down = './graphics/transparent_background.png'
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
