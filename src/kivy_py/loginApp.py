@@ -11,12 +11,13 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.core.window import Window
-
+from kivy_py.rounded_widgets import RoundedButton
 
 
 class LoginPage(Widget):
     background_color = background_color
     page_color = main_color_1
+    button_color = main_color_2
     text_color = text_color
     username_got = ""
     password_got = ""
@@ -42,14 +43,14 @@ class LoginPage(Widget):
         self.username_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y + (0.2 * self.center_y), height=self.width/8, width=300, on_text=self.on_username_text)
         self.add_widget(self.username_input)
 
-        # Password
+        # PasswordB
         label3 = Label(font_size=self.width/16, center_x=self.center_x, center_y=self.center_y - (0.1 * self.center_y), text="Hasło", font_name="../fonts/Roboto-Black.ttf")
         self.add_widget(label3)
         self.password_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y - (0.2 * self.center_y), height=self.width/8, width=300, password=True, on_text=self.on_password_text)
         self.add_widget(self.password_input)
 
         # Button
-        button = Button(center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), on_press=self.on_button_press)
+        button = RoundedButton(center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), on_press=self.on_button_press,button_color=self.button_color, background_color = self.page_color)
         self.add_widget(button)
 
     def on_username_text(self, instance, value):
