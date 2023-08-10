@@ -13,6 +13,6 @@ class RoundedButton(Button):
             Color(*button_color)
             self.rect = RoundedRectangle(pos=self.pos, size=self.size, radius=[30, 30, 30, 30])
 
-        self.animation = Animation(opacity=0, duration = 2)
+        self.animation = Animation(opacity=0, duration = 1)
         self.label = Label(text="Zaloguj się!", center_x=self.center_x, center_y=self.center_y, font_name="../fonts/Roboto-Black.ttf" )
         self.add_widget(self.label)

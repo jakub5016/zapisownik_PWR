@@ -20,7 +20,6 @@ class LoginPage(Widget):
     username_got = ""
     password_got = ""
     logged = False
-    animation = Animation(opacity=1, duration=30)
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.orientation = 'vertical'
@@ -41,7 +40,7 @@ class LoginPage(Widget):
         self.username_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y + (0.2 * self.center_y), height=self.width/8, width=300, on_text=self.on_username_text)
         self.add_widget(self.username_input)
 
-        # PasswordB
+        # Password
         label3 = Label(font_size=self.width/16, center_x=self.center_x, center_y=self.center_y - (0.1 * self.center_y), text="Hasło", font_name="../fonts/Roboto-Black.ttf")
         self.add_widget(label3)
         self.password_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y - (0.2 * self.center_y), height=self.width/8, width=300, password=True, on_text=self.on_password_text)
@@ -54,6 +53,10 @@ class LoginPage(Widget):
         # Gif after press
         self.gif_image = Image(center_x=self.center_x+20, center_y=self.center_y - (0.6 * self.center_y) +35, size=(70, 70),source='../graphics/Loading.gif', anim_delay = -1, opacity=0, anim_loop=300)
         self.add_widget(self.gif_image)
+
+        # Warining
+        self.label4 = Label(text = "ZŁE HASŁO LUB NAZWA UŻYTKOWNIKA", font_size=self.width/16, font_name="../fonts/Roboto-Black.ttf", center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), opacity=0)
+        self.add_widget(self.label4)
 
     def on_username_text(self, instance, value):
         self.username_got = value
@@ -103,15 +106,19 @@ class LoginPage(Widget):
         finally:
             driver.quit()
 
-        Clock.schedule_once(lambda dt: self.animation.stop(self), 0)
-        Clock.schedule_once(self.change_to_screen_one, 0)
+        Clock.schedule_once(lambda dt: self.button.animation.stop(self), 0)
+        if self.logged == True:
+            Clock.schedule_once(self.change_to_screen_one, 0)
+        else:
+            Animation(opacity = 0, duration=1).start(self.gif_image)
+            Animation(opacity = 1, duration=1).start(self.label4)
 
     def change_to_screen_one(self, dt):
         self.parent.parent.current = 'screen_one'  # Zmiana ekranu na "screen_one"
 
 
     def on_press_animation(self):
-        show_loading = Animation(opacity = 1, duration = 0.7)
+        show_loading = Animation(opacity = 1, duration = 1)
         show_loading.start(self.gif_image)
         self.gif_image.anim_delay = 0.25
         self.gif_image.anim = True
