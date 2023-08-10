@@ -28,7 +28,7 @@ class LoginPage(Widget):
         self.height = Window.height/2 + (0.22*Window.height)
         with self.canvas:
             Color(*self.page_color)
-            RoundedRectangle(pos=self.pos, size=self.size, radius=[60, 60, 60, 60])
+            self.page = RoundedRectangle(pos=self.pos, size=self.size, radius=[60, 60, 60, 60])
 
         # Label
         label1 = Label(font_size=self.width/10, center_x=self.center_x, center_y=self.center_y + (0.5 * self.center_y), text="Logowanie", font_name="../fonts/Roboto-Black.ttf")
@@ -55,7 +55,7 @@ class LoginPage(Widget):
         self.add_widget(self.gif_image)
 
         # Warining
-        self.label4 = Label(text = "ZŁE HASŁO LUB NAZWA UŻYTKOWNIKA", font_size=self.width/16, font_name="../fonts/Roboto-Black.ttf", center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), opacity=0)
+        self.label4 = Label(text = "ZŁE HASŁO LUB NAZWA UŻYTKOWNIKA", font_size=self.width/32, font_name="../fonts/Roboto-Black.ttf", center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +60, size=(200, 70), opacity=0, color=(1,0,0,1))
         self.add_widget(self.label4)
 
     def on_username_text(self, instance, value):
@@ -90,7 +90,7 @@ class LoginPage(Widget):
 
             driver.implicitly_wait(10)
             print("LOGIN COMPLETE")
-            self.logged = True
+            # self.logged = True
 
             # Go to zapisy
             # print("GOING TO \"ZAPISY\"")
@@ -110,9 +110,13 @@ class LoginPage(Widget):
         if self.logged == True:
             Clock.schedule_once(self.change_to_screen_one, 0)
         else:
-            Animation(opacity = 0, duration=1).start(self.gif_image)
-            Animation(opacity = 1, duration=1).start(self.label4)
-
+            # Animation to create place for error and place it
+            Animation(opacity = 0, duration=1).start(self.gif_image) # Stop loading
+            Animation(opacity = 1, duration=1).start(self.label4) # Show error
+            Animation(size=((Window.width/2), Window.height/2 + (0.22*Window.height)+50),pos=(self.pos[0], self.pos[1]-35), duration=1).start(self.page) # Resize page
+            Animation(opacity = 1, pos=(self.pos[0]+100, self.pos[1]-15), duration =1).start(self.button)
+            Animation(pos=self.button.pos).start(self.button.rect)
+            Animation(center_y=self.button.center_y-35).start(self.button.label)
     def change_to_screen_one(self, dt):
         self.parent.parent.current = 'screen_one'  # Zmiana ekranu na "screen_one"
 
