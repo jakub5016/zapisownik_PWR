@@ -37,13 +37,13 @@ class LoginPage(Widget):
         # Username
         label2 = Label(font_size=self.width/16, center_x=self.center_x, center_y=self.center_y + (0.3 * self.center_y), text="Nazwa użytkownika", font_name="../fonts/Roboto-Black.ttf")
         self.add_widget(label2)
-        self.username_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y + (0.2 * self.center_y), height=self.width/8, width=300, on_text=self.on_username_text)
+        self.username_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y + (0.2 * self.center_y), height=self.width/8, width=300, on_enter=self.on_button_press)
         self.add_widget(self.username_input)
 
         # Password
         label3 = Label(font_size=self.width/16, center_x=self.center_x, center_y=self.center_y - (0.1 * self.center_y), text="Hasło", font_name="../fonts/Roboto-Black.ttf")
         self.add_widget(label3)
-        self.password_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y - (0.2 * self.center_y), height=self.width/8, width=300, password=True, on_text=self.on_password_text)
+        self.password_input = TextInput(multiline=False, font_size=self.width/16, center_x=self.center_x - 100 , center_y=self.center_y - (0.2 * self.center_y), height=self.width/8, width=300, password=True, on_enter=self.on_button_press)
         self.add_widget(self.password_input)
 
         # Button
@@ -58,13 +58,9 @@ class LoginPage(Widget):
         self.label4 = Label(text = "ZŁE HASŁO LUB NAZWA UŻYTKOWNIKA", font_size=self.width/32, font_name="../fonts/Roboto-Black.ttf", center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +60, size=(200, 70), opacity=0, color=(1,0,0,1))
         self.add_widget(self.label4)
 
-    def on_username_text(self, instance, value):
-        self.username_got = value
-
-    def on_password_text(self, instance, value):
-        self.password_got = value
-
     def on_button_press(self, instance):
+        self.username_got = self.username_input.text
+        self.password_got = self.password_input.text
         self.on_press()
 
 
@@ -90,13 +86,17 @@ class LoginPage(Widget):
 
             driver.implicitly_wait(10)
             print("LOGIN COMPLETE")
-            # self.logged = True
+            try:
+                driver.find_element(By.XPATH,"/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/b[1]")
+                try:
+                    driver.find_element(By.XPATH, "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[1]/table/tbody/tr[1]/td/table[2]/tbody/tr[15]/td/a").click()
+
+                except:
+                    driver.quit()
+            except:
+                self.logged = True
 
             # Go to zapisy
-            # print("GOING TO \"ZAPISY\"")
-            # driver.find_element(By.XPATH, "//*[contains(text(), 'Zapisy')]").click()
-
-            # driver.implicitly_wait(10)
 
             with open("output.html", "w", encoding="utf-8") as file:
                 file.write(driver.page_source)
@@ -117,6 +117,7 @@ class LoginPage(Widget):
             Animation(opacity = 1, pos=(self.pos[0]+100, self.pos[1]-15), duration =1).start(self.button)
             Animation(pos=self.button.pos).start(self.button.rect)
             Animation(center_y=self.button.center_y-35).start(self.button.label)
+
     def change_to_screen_one(self, dt):
         self.parent.parent.current = 'screen_one'  # Zmiana ekranu na "screen_one"
 
