@@ -10,7 +10,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy_py.rounded_widgets import RoundedButton
-
+from kivy.uix.image import Image
 
 class LoginPage(Widget):
     background_color = background_color
@@ -50,6 +50,10 @@ class LoginPage(Widget):
         # Button
         self.button = RoundedButton(center_x=self.center_x-50, center_y=self.center_y - (0.6 * self.center_y) +35, size=(200, 70), on_press=self.on_button_press,button_color=self.button_color, background_color = self.page_color)
         self.add_widget(self.button)
+
+        # Gif after press
+        self.gif_image = Image(center_x=self.center_x+20, center_y=self.center_y - (0.6 * self.center_y) +35, size=(70, 70),source='../graphics/Loading.gif', anim_delay = -1, opacity=0, anim_loop=300)
+        self.add_widget(self.gif_image)
 
     def on_username_text(self, instance, value):
         self.username_got = value
@@ -107,7 +111,11 @@ class LoginPage(Widget):
 
 
     def on_press_animation(self):
-        self.animation.start(self)
+        show_loading = Animation(opacity = 1, duration = 0.7)
+        show_loading.start(self.gif_image)
+        self.gif_image.anim_delay = 0.25
+        self.gif_image.anim = True
+        self.button.animation.start(self.button)
 
     def on_press(self):
         print(self.username_got, self.password_got)
