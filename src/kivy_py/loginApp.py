@@ -135,5 +135,3 @@ class LoginPage(Widget):
         thread_to_login = threading.Thread(target=self.login_edukacja_cl, args=())
         thread_to_login.start()
 
-
-    pass
