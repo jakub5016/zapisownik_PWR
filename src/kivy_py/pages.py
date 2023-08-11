@@ -21,3 +21,7 @@ class WelcomePage(Widget):
         self.add_widget(label)
         button = LoginButton(center_x=Window.width / 2, center_y=Window.height * 0.4)
         self.add_widget(button)
+
+
+class MainPage(Widget):
+    pass

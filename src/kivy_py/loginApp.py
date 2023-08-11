@@ -108,6 +108,7 @@ class LoginPage(Widget):
 
         Clock.schedule_once(lambda dt: self.button.animation.stop(self), 0)
         if self.logged == True:
+            Animation(size= (Window.width, Window.height)).start(self.page)
             Clock.schedule_once(self.change_to_screen_one, 0)
         else:
             # Animation to create place for error and place it
@@ -119,7 +120,7 @@ class LoginPage(Widget):
             Animation(center_y=self.button.center_y-35).start(self.button.label)
 
     def change_to_screen_one(self, dt):
-        self.parent.parent.current = 'screen_one'  # Zmiana ekranu na "screen_one"
+        self.parent.parent.current = 'main_screen'  # Zmiana ekranu na "screen_one"
 
 
     def on_press_animation(self):
