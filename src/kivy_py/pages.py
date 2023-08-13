@@ -4,9 +4,9 @@ from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy_py.rounded_widgets import LoginButton
 from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.stackLayout import StackLayout
 
 class WelcomePage(Widget):
     background_color = background_color
@@ -27,9 +27,36 @@ class WelcomePage(Widget):
 
 
 class MainPage(BoxLayout):
-    def __init__(self, size, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.size = size
-        self.add_widget(Button(text="AAA", size=size))
 
+        for _ in range(5):
+            self.add_widget(Button(text="AAA"))
     pass
+
+
+class Day(StackLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.add_widget(Button(text="AAA"))
+
+class Dashboard(BoxLayout):
+    orientation = 'horizontal'
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.add_widget(Button(text="Profile"))
+        self.add_widget(Button(text="Logout"))
+
+class DaysInfo(BoxLayout):
+    orientation = 'horizontal'
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.add_widget(Button(text="Poniedziałek"))
+        self.add_widget(Button(text="Wtorek"))
+        self.add_widget(Button(text="Środa"))
+        self.add_widget(Button(text="Czwartek"))
+        self.add_widget(Button(text="Piątek"))
+

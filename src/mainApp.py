@@ -5,8 +5,7 @@ from kivy_py.loginApp import LoginPage
 from kivy_py.colors import *
 from kivy.core.window import Window
 from kivy.graphics import Color, RoundedRectangle
-from kivy_py.pages import WelcomePage
-from kivy_py.pages import MainPage
+from kivy_py.pages import WelcomePage, MainPage, Dashboard, DaysInfo
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 
@@ -60,10 +59,10 @@ class MainScreen(Screen):
             self.rect = RoundedRectangle(pos=self.pos, size=(Window.width, Window.height))
         self.layout = GridLayout(cols = 2, rows = 2)
 
-        self.layout.add_widget(Button(text="BBB"))
-        self.layout.add_widget(Button(text="BBB"))
-        self.layout.add_widget(Button(text="BBB"))
-        self.layout.add_widget(MainPage(size = (300, 300)))
+        self.layout.add_widget(Dashboard(size_hint_x=None, width=Window.width/4,size_hint_y=None, height=Window.height/4) )
+        self.layout.add_widget(DaysInfo(size_hint_y=None, height=Window.height/4))
+        self.layout.add_widget(Button(text="BBB",size_hint_x=None, width=Window.width/4))
+        self.layout.add_widget(MainPage())
 
         self.add_widget(self.layout)
 
