@@ -6,7 +6,6 @@ from kivy_py.rounded_widgets import LoginButton
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.stackLayout import StackLayout
 
 class WelcomePage(Widget):
     background_color = background_color
@@ -35,7 +34,7 @@ class MainPage(BoxLayout):
     pass
 
 
-class Day(StackLayout):
+class Day(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(Button(text="AAA"))

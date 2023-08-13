@@ -64,8 +64,8 @@ class LoginPage(Widget):
         self.on_press()
 
 
-    def login_edukacja_cl(self):
-        login_url = "https://edukacja.pwr.wroc.pl/EdukacjaWeb/studia.do"
+    def login_usos(self):
+        login_url = "https://login.pwr.edu.pl/auth/realms/pwr.edu.pl/protocol/cas/login?service=https%3A%2F%2Fweb.usos.pwr.edu.pl%2Fkontroler.php%3F_action%3Dlogowaniecas%2Findex&locale=pl"
 
         options = webdriver.FirefoxOptions()
         options.add_argument("--headless")  # headless - web browser without graphic interface
@@ -76,9 +76,9 @@ class LoginPage(Widget):
             print("LOGGING IN")
             driver.get(login_url)
 
-            username_input = driver.find_element(By.NAME, "login")
-            password_input = driver.find_element(By.NAME, "password")
-            login_button = driver.find_element(By.CLASS_NAME, "BUTTON_ZALOGUJ")
+            username_input = driver.find_element(By.XPATH, "//*[@id=\"username\"]")
+            password_input = driver.find_element(By.XPATH, "//*[@id=\"password\"]")
+            login_button = driver.find_element(By.XPATH, "/html/body/div/div[2]/div/div[4]/form/div[2]/button[1]")
 
             username_input.send_keys(self.username_got)
             password_input.send_keys(self.password_got)
@@ -86,22 +86,14 @@ class LoginPage(Widget):
 
             driver.implicitly_wait(10)
             print("LOGIN COMPLETE")
-            try:
-                driver.find_element(By.XPATH,"/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[3]/table/tbody/tr/td/b[1]")
-                try:
-                    driver.find_element(By.XPATH, "/html/body/table/tbody/tr/td/table/tbody/tr[4]/td/table/tbody/tr[1]/td[1]/table/tbody/tr[1]/td/table[2]/tbody/tr[15]/td/a").click()
 
-                except:
-                    driver.quit()
+            try:
+                driver.find_element(By.XPATH,"/html/body/div/div[2]/div/div[3]/div/span")
             except:
                 self.logged = True
 
-            # Go to zapisy
-
             with open("output.html", "w", encoding="utf-8") as file:
                 file.write(driver.page_source)
-
-            # print("Zawartość strony została zapisana do pliku 'output.html'.")
 
         finally:
             driver.quit()
@@ -133,6 +125,6 @@ class LoginPage(Widget):
     def on_press(self):
         print(self.username_got, self.password_got)
         self.on_press_animation()
-        thread_to_login = threading.Thread(target=self.login_edukacja_cl, args=())
+        thread_to_login = threading.Thread(target=self.login_usos, args=())
         thread_to_login.start()
 

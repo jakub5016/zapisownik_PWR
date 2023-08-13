@@ -50,7 +50,6 @@ class ScreenOne(Screen):
     pass
 
 class MainScreen(Screen):
-    Window.size = (1280, 900)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -72,12 +71,12 @@ class MainWindow(App):
         screen_one = ScreenOne(name='screen_one')
         screen_two = ScreenTwo(name='screen_two')
         main_screen = MainScreen(name="main_screen")
-        # sm.add_widget(screen_one)
-        # sm.add_widget(screen_two)
-        # sm.add_widget(main_screen)
-        sm.add_widget(main_screen)
-        sm.add_widget(screen_two)
         sm.add_widget(screen_one)
+        sm.add_widget(screen_two)
+        sm.add_widget(main_screen)
+        # sm.add_widget(main_screen)
+        # sm.add_widget(screen_two)
+        # sm.add_widget(screen_one)
         return sm
 
 if __name__ == '__main__':
