@@ -7,6 +7,8 @@ from kivy.core.window import Window
 from kivy.graphics import Color, RoundedRectangle
 from kivy_py.pages import WelcomePage
 from kivy_py.pages import MainPage
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.button import Button
 
 # Fixed Window Size
 Window.size = (800, 600)
@@ -49,14 +51,21 @@ class ScreenOne(Screen):
     pass
 
 class MainScreen(Screen):
+    Window.size = (1280, 900)
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         with self.canvas:
             Color(*main_color_1)
             self.rect = RoundedRectangle(pos=self.pos, size=(Window.width, Window.height))
-        main_page = MainPage()
-        self.add_widget(main_page)
+        self.layout = GridLayout(cols = 2, rows = 2)
 
+        self.layout.add_widget(Button(text="BBB"))
+        self.layout.add_widget(Button(text="BBB"))
+        self.layout.add_widget(Button(text="BBB"))
+        self.layout.add_widget(MainPage(size = (300, 300)))
+
+        self.add_widget(self.layout)
 
 class MainWindow(App):
     def build(self):
@@ -64,9 +73,12 @@ class MainWindow(App):
         screen_one = ScreenOne(name='screen_one')
         screen_two = ScreenTwo(name='screen_two')
         main_screen = MainScreen(name="main_screen")
-        sm.add_widget(screen_one)
-        sm.add_widget(screen_two)
+        # sm.add_widget(screen_one)
+        # sm.add_widget(screen_two)
+        # sm.add_widget(main_screen)
         sm.add_widget(main_screen)
+        sm.add_widget(screen_two)
+        sm.add_widget(screen_one)
         return sm
 
 if __name__ == '__main__':

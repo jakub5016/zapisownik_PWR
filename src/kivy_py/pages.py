@@ -4,6 +4,9 @@ from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy_py.rounded_widgets import LoginButton
 from kivy.uix.label import Label
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 
 class WelcomePage(Widget):
     background_color = background_color
@@ -23,5 +26,10 @@ class WelcomePage(Widget):
         self.add_widget(button)
 
 
-class MainPage(Widget):
+class MainPage(BoxLayout):
+    def __init__(self, size, **kwargs):
+        super().__init__(**kwargs)
+        self.size = size
+        self.add_widget(Button(text="AAA", size=size))
+
     pass
