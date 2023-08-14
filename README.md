@@ -1,12 +1,17 @@
 # ZAPISOWNIK PWR
-AUTORZY:
-JAKUB GIL - AIR 
+Author:
+JAKUB GIL - AIR
 
-## OPIS
-Asysten Zapisowy stworzony przez KN Native Flow przez długi czas był wykorzystywany przez studentów do pomocy przy zapisach na PWR. Poniżej prezentuję nową wersję zapisownika który jest aplikacją okienkową niewymagającą stałego wspierania tak jak np. hosting. 
+## OPIS / Description
+PL:
+Asystent Zapisowy stworzony przez KN Native Flow przez długi czas był wykorzystywany przez studentów do pomocy przy zapisach na PWR. Poniżej prezentuję nową wersję zapisownika który jest aplikacją okienkową niewymagającą stałego wspierania tak jak np. hosting.
 
-## JAK URUCHOMIĆ ZAPISOWNIK 
-Należy posiadać na komputrze zainstalowanego pythona. W tym celu należy przejść do [oficjalnej stony pythonas](https://www.python.org/downloads/) i pobrać wersję odpowaidającą naszemu systemowi operacyjnemu. Następnie w zależności od naszego systemu operacyjnego:
+EN:
+The Registration Assistant created by KN Native Flow has been used by students for a long time to help with enrollment at Wrocław University of Science and Technology (PWR). Below, I present the new version of the enrollment tool, which is a windowed application that doesn't require continuous support, similar to hosting.
 
-### WINDOWS
-Polecam skorzystać z poranika na stonie [GFG](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/). A następnie zainstalować wszystkie potrzebne paczki komendą ```pip install -r  requirements.txt```. Teraz możemy uruchomić program komendą ```python main```
+## JAK URUCHOMIĆ ZAPISOWNIK / How to run enrollment tool
+PL:
+Aby uruchomić zapisownik należy uruchomić skrypt ```mainApp.py``` znajdujący się w folderze ``scr``. Wcześniej jednak należy zainstalować potrzebne paczki korzystając z komnedy ```pip install -r requirerments.txt```.
+
+EN:
+To launch the enrollment tool, you should run the script ```mainApp.py``` located in the src folder. However, before doing so, you need to install the necessary packages using the command ```pip install -r requirements.txt```.
