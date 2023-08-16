@@ -15,12 +15,23 @@ def login_usos():
 
         courses_list = driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/div[5]/div/div[2]/map")
 
-        links = courses_list.find_elements(By.TAG_NAME, "area")
+        links_full = courses_list.find_elements(By.TAG_NAME, "area")
+
+        links =[]
+
+        for link in links_full:
+            href = link.get_attribute("href")
+            links.append(href)
 
         for link in links:
-            href = link.get_attribute("href")
-            print(href)
+            driver.get(link)
+            # print(link)
+            print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/table/tbody/tr[1]/td[2]/a").get_attribute("text"))
+            print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/table/tbody/tr[8]/td[2]/a").get_attribute("text"))
+            print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/h1/span[3]").text)
+            print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/table/tbody/tr[3]/td[2]/div").text)
 
+            print("\n")
         with open("output.html", "w", encoding="utf-8") as file:
             file.write(driver.page_source)
 
