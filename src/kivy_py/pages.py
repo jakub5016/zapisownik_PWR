@@ -7,6 +7,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
+from kivy_py.time_converter import time_converter
 
 
 class WelcomePage(Widget):
@@ -33,21 +34,26 @@ class MainPage(FloatLayout):
         self.first_day_x = 250
         self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
 
-        for _ in range(5):
-            self.add_widget(ClassDate(text="AAA", day=0))
+        self.add_widget(ClassDate(text="AAA", day=0, time = "07:30"))
+        self.add_widget(ClassDate(text="AAA", day=0, time = "11:15"))
     pass
 
 
 class ClassDate(Button):
-    def __init__(self, day, type=None, **kwargs):
+    def __init__(self, day, time, type=None, **kwargs):
         super().__init__(**kwargs)
+        self.start_hour = Window.height*2/3
 
         self.first_day_x = 255
         self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
+
         self.size=(self.day_iterator, 100) # Size of Button fixed
         self.size_hint= (None, None)
 
         self.center_x = self.first_day_x + day * 120 # Define day as Monday = 0, Tuesday=1 ... etc.
+
+        self.center_y = self.start_hour -time_converter(time)
+        print(time_converter(time))
 
         if type != None:
             self.type = type
