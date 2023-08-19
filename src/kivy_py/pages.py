@@ -5,7 +5,9 @@ from kivy.uix.widget import Widget
 from kivy_py.rounded_widgets import LoginButton
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
+
 
 class WelcomePage(Widget):
     background_color = background_color
@@ -25,13 +27,31 @@ class WelcomePage(Widget):
         self.add_widget(button)
 
 
-class MainPage(BoxLayout):
+class MainPage(FloatLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.first_day_x = 250
+        self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
 
         for _ in range(5):
-            self.add_widget(Button(text="AAA"))
+            self.add_widget(ClassDate(text="AAA", day=0))
     pass
+
+
+class ClassDate(Button):
+    def __init__(self, day, type=None, **kwargs):
+        super().__init__(**kwargs)
+
+        self.first_day_x = 255
+        self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
+        self.size=(self.day_iterator, 100) # Size of Button fixed
+        self.size_hint= (None, None)
+
+        self.center_x = self.first_day_x + day * 120 # Define day as Monday = 0, Tuesday=1 ... etc.
+
+        if type != None:
+            self.type = type
+
 
 
 class Day(BoxLayout):

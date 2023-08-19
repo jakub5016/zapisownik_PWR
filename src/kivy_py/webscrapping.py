@@ -30,7 +30,7 @@ def login_usos():
             print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/table/tbody/tr[8]/td[2]/a").get_attribute("text"))
             print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/h1/span[3]").text)
             print(driver.find_element(By.XPATH, "/html/body/usos-layout/div[2]/main-panel/main/div/div/table/tbody/tr[3]/td[2]/div").text)
-
+            
             print("\n")
         with open("output.html", "w", encoding="utf-8") as file:
             file.write(driver.page_source)
