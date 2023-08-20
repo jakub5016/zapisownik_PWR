@@ -15,6 +15,6 @@ def time_converter(time):
     finally:
         timer = 60 *hour + minute
 
-        return int(((timer- 420)*400/1290))
+        return int(((timer)*400/1290))
 
 # time_converter("07:30")

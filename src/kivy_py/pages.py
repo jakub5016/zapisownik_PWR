@@ -35,25 +35,24 @@ class MainPage(FloatLayout):
         self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
 
         self.add_widget(ClassDate(text="AAA", day=0, time = "07:30"))
-        self.add_widget(ClassDate(text="AAA", day=0, time = "11:15"))
+        self.add_widget(ClassDate(text="AAA", day=0, time = "21:15"))
     pass
 
 
 class ClassDate(Button):
     def __init__(self, day, time, type=None, **kwargs):
         super().__init__(**kwargs)
-        self.start_hour = Window.height*2/3
 
         self.first_day_x = 255
         self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
 
-        self.size=(self.day_iterator, 100) # Size of Button fixed
+        self.size=(self.day_iterator, time_converter("01:30")) # Size of Button fixed
         self.size_hint= (None, None)
 
         self.center_x = self.first_day_x + day * 120 # Define day as Monday = 0, Tuesday=1 ... etc.
 
-        self.center_y = self.start_hour -time_converter(time)
-        print(time_converter(time))
+        self.center_y = time_converter(time)
+        print(time_converter("01:30"))
 
         if type != None:
             self.type = type
