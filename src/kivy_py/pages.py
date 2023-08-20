@@ -8,7 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy_py.time_converter import time_converter
-
+from kivy_py.rounded_widgets import RoundedDay
 
 class WelcomePage(Widget):
     background_color = background_color
@@ -77,10 +77,14 @@ class DaysInfo(BoxLayout):
     orientation = 'horizontal'
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        with self.canvas:
+            Color(*main_color_1)
+            RoundedRectangle(radius=[60, 60, 60, 60], size=self.size, pos=self.pos)
 
-        self.add_widget(Button(text="Poniedziałek"))
-        self.add_widget(Button(text="Wtorek"))
-        self.add_widget(Button(text="Środa"))
-        self.add_widget(Button(text="Czwartek"))
-        self.add_widget(Button(text="Piątek"))
+
+        self.add_widget(RoundedDay(text="Poniedziałek"))
+        self.add_widget(RoundedDay(text="Wtorek"))
+        self.add_widget(RoundedDay(text="Środa"))
+        self.add_widget(RoundedDay(text="Czwartek"))
+        self.add_widget(RoundedDay(text="Piątek"))
 
