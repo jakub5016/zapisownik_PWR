@@ -34,7 +34,7 @@ class MainPage(FloatLayout):
         self.first_day_x = 250
         self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
 
-        self.add_widget(ClassDate(text="AAA", day=0, time = "07:30"))
+        self.add_widget(ClassDate(text="AAA", day=1, time = "07:30"))
         self.add_widget(ClassDate(text="AAA", day=0, time = "21:15"))
     pass
 
@@ -43,13 +43,13 @@ class ClassDate(Button):
     def __init__(self, day, time, type=None, **kwargs):
         super().__init__(**kwargs)
 
-        self.first_day_x = 255
-        self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
+        self.first_day_x = Window.width*2/7 + Window.width/7/2 # First day coordinates, this is a center so i have to add half of the size 
+        self.day_iterator= Window.width/7 # Size in pixels between first and second day in week (in x-axis)
 
-        self.size=(self.day_iterator, time_converter("01:30")) # Size of Button fixed
+        self.size=(Window.width/7, time_converter("01:30")) # Size of Button fixed
         self.size_hint= (None, None)
 
-        self.center_x = self.first_day_x + day * 120 # Define day as Monday = 0, Tuesday=1 ... etc.
+        self.center_x = self.first_day_x + day * Window.width/7 # Define day as Monday = 0, Tuesday=1 ... etc.
 
         self.center_y = time_converter(time)
         print(time_converter("01:30"))
@@ -88,3 +88,8 @@ class DaysInfo(BoxLayout):
         self.add_widget(RoundedDay(text="Czwartek"))
         self.add_widget(RoundedDay(text="Piątek"))
 
+class HourInfo(FloatLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.add_widget(Button(size=self.size, pos = self.pos))
+        self.add_widget(Label(text="07:30", center_y = self.center_y +Window.width/4.5))

@@ -5,7 +5,7 @@ from kivy_py.loginApp import LoginPage
 from kivy_py.colors import *
 from kivy.core.window import Window
 from kivy.graphics import Color, RoundedRectangle
-from kivy_py.pages import WelcomePage, MainPage, Dashboard, DaysInfo
+from kivy_py.pages import WelcomePage, MainPage, Dashboard, DaysInfo, HourInfo
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 
@@ -55,15 +55,18 @@ class MainScreen(Screen):
         super().__init__(**kwargs)
         with self.canvas:
             Color(*main_color_1)
-            self.rect = RoundedRectangle(pos=self.pos, size=(Window.width, Window.height))
+            self.rect = RoundedRectangle(pos=self.pos, size=(4000, 4000))
         self.layout = GridLayout(cols = 2, rows = 2)
 
-        self.layout.add_widget(Dashboard(size_hint_x=None, width=Window.width/4,size_hint_y=None, height=Window.height/4) )
-        self.layout.add_widget(DaysInfo(size_hint_y=None, height=Window.height/4))
-        self.layout.add_widget(Button(text="BBB",size_hint_x=None, width=Window.width/4))
+        self.layout.add_widget(Dashboard(size_hint_x=None, width=Window.width*2/7,size_hint_y=None, height=Window.height/4) )
+        self.daysinfo = DaysInfo(size_hint_y=None, height=Window.height/4)
+        self.layout.add_widget(self.daysinfo)
+        self.layout.add_widget(HourInfo(size_hint_x=None, width=Window.width*2/7))
         self.layout.add_widget(MainPage())
 
         self.add_widget(self.layout)
+        
+
 
 class MainWindow(App):
     def build(self):
