@@ -56,13 +56,21 @@ class MainScreen(Screen):
         with self.canvas:
             Color(*main_color_1)
             self.rect = RoundedRectangle(pos=self.pos, size=(4000, 4000))
-        self.layout = GridLayout(cols = 2, rows = 2)
 
-        self.layout.add_widget(Dashboard(size_hint_x=None, width=Window.width*2/7,size_hint_y=None, height=Window.height/4) )
-        self.daysinfo = DaysInfo(size_hint_y=None, height=Window.height/4)
-        self.layout.add_widget(self.daysinfo)
-        self.layout.add_widget(HourInfo(size_hint_x=None, width=Window.width*2/7))
-        self.layout.add_widget(MainPage())
+
+        self.layout = GridLayout(cols=2, rows=2)
+
+
+        dashboard = Dashboard(size_hint_x=None, width=Window.width * 2 / 7, size_hint_y=None, height=Window.height / 4)
+        days_info = DaysInfo(size_hint_y=None, height=Window.height / 4)
+        hour_info = HourInfo(size_hint_x=None, width=Window.width * 2 / 7)
+        
+        main_page = MainPage(size_hint=(None, None), size=(Window.width * 3 / 7, Window.height / 2))  # Set explicit size
+
+        self.layout.add_widget(dashboard)
+        self.layout.add_widget(days_info)
+        self.layout.add_widget(hour_info)
+        self.layout.add_widget(main_page)
 
         self.add_widget(self.layout)
         

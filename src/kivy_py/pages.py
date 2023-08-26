@@ -34,7 +34,7 @@ class MainPage(FloatLayout):
         self.first_day_x = 250
         self.day_iterator= 120 # Size in pixels between first and second day in week (in x-axis)
 
-        self.add_widget(ClassDate(text="AAA", day=1, time = "07:30"))
+        self.add_widget(ClassDate(text="AAA", day=1, time = "07:30", type="W"))
         self.add_widget(ClassDate(text="AAA", day=0, time = "21:15"))
     pass
 
@@ -46,6 +46,8 @@ class ClassDate(Button):
         self.first_day_x = Window.width*2/7 + Window.width/7/2 # First day coordinates, this is a center so i have to add half of the size 
         self.day_iterator= Window.width/7 # Size in pixels between first and second day in week (in x-axis)
 
+        self.day = day
+
         self.size=(Window.width/7, time_converter("01:30")) # Size of Button fixed
         self.size_hint= (None, None)
 
@@ -54,8 +56,17 @@ class ClassDate(Button):
         self.center_y = time_converter(time)
         print(time_converter("01:30"))
 
-        if type != None:
-            self.type = type
+        self.type = type
+    
+        if type == "W":
+            self.background_color = (1,0,0,1)
+
+    def on_size(self, *args):
+        print("on_size called")
+        self.center_x = self.first_day_x + self.day * Window.width / 7
+
+
+
 
 
 
